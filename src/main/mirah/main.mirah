@@ -1,12 +1,18 @@
-import spark.*
+import java.util.Map
+import java.util.HashMap
 
-class SimpleRoute < Route
+import spark.*
+import spark.template.velocity.VelocityRoute
+
+class SimpleRoute < VelocityRoute
   def initialize
     super('/hello')
   end
 
   def handle(request:Request, response:Response):Object
-    'Hello World!'
+    model = HashMap.new
+    model.put('name', 'Santa')
+    modelAndView(model, 'hello.wm')
   end
 end
 
